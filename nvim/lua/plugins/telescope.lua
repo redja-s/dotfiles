@@ -15,7 +15,7 @@ Plugin.dependencies = {
 function Plugin.init()
   local builtin = require("telescope.builtin")
   local keymap = vim.keymap.set
-  -- keymap("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
+
   keymap("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
   keymap("n", "<leader>fr", builtin.oldfiles, { desc = "Previously open files" })
   keymap("n", "<leader>fc", builtin.grep_string, { desc = "Search for string under cursor" })
@@ -23,11 +23,6 @@ function Plugin.init()
     { desc = "Live grep" })
   keymap("n", "fr", builtin.lsp_references, { desc = "References for currently selected word" })
   keymap("n", "fd", builtin.lsp_definitions, { desc = "Go to definition" })
-
-  -- vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-  -- vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-  -- vim.keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-  -- vim.keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
 end
 
 function Plugin.config()
@@ -46,6 +41,16 @@ function Plugin.config()
     },
   })
   telescope.load_extension("fzf")
+
+  -- Setup which-key integration when pressing leader
+  -- local wk = require("which-key")
+  -- local builtin = require("telescope.builtin")
+  -- wk.register({
+  --   f = {
+  --     name = "Telescope",
+  --     f = { builtin.find_files, "Find files(2)" }
+  --   },
+  -- }, { prefix = "<leader>" })
 end
 
 return Plugin

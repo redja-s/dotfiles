@@ -1,23 +1,21 @@
-local Plugin = {"neovim/nvim-lspconfig"}
+local Plugin = { "neovim/nvim-lspconfig" }
 
-Plugin.event = {"BufReadPre", "BufNewFile"}
+Plugin.event = { "BufReadPre", "BufNewFile" }
 
 Plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
-  {"antosha417/nvim-lsp-file-operations", config=true},
+  { "antosha417/nvim-lsp-file-operations", config = true },
 }
 
 function Plugin.config()
-  local lspconfig = require("lspconfig")
-  local cmp_nvim_lsp = require("cmp_nvim_lsp")
+  -- Set keymaps for LSPs
   local keymap = vim.keymap
-  local opts = {noremap=true, silent=true}
-  local on_attach = function(client, bufnr)
+  local opts = { noremap = true, silent = true }
+  local on_attach = function(bufnr)
     opts.buffer = bufnr
-
     opts.desc = "Show LSP references"
     keymap.set("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
-    
+
     opts.desc = "Go to declaration"
     keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
@@ -31,7 +29,7 @@ function Plugin.config()
     keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
     opts.desc = "See available code actions"
-    keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, opts)
+    keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
     opts.desc = "Smart rename"
     keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
@@ -55,22 +53,22 @@ function Plugin.config()
     keymap.set("n", "<leader>rs", ":LspRestart<cr>", opts)
   end
 
+  local cmp_nvim_lsp = require("cmp_nvim_lsp")
   local capabilities = cmp_nvim_lsp.default_capabilities()
 
+  -- TODO: Need to integrate utils signs here
   local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
   for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
   end
-  
 
+  local lspconfig = require("lspconfig")
   -- Configure options for LSPs
-  
   lspconfig["html"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
   })
-
 
   lspconfig["tsserver"].setup({
     capabilities = capabilities,
@@ -90,7 +88,7 @@ function Plugin.config()
   lspconfig["emmet_ls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-    filetypes = {"html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte"},
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
   })
 
   lspconfig["lua_ls"].setup({
@@ -114,12 +112,10 @@ function Plugin.config()
   lspconfig["jdtls"].setup({
     capabilities = capabilities,
     on_attach = on_attach,
-
-  })
-
-  lspconfig["yamlls"].setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    opts = {
+      tabstop = 4,
+      shiftwidth = 4,
+    },
   })
 end
 

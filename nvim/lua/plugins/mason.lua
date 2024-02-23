@@ -24,22 +24,28 @@ function Plugin.config()
       "html",
       "cssls",
       "tailwindcss",
-      "svelte",
       "lua_ls",
-      "graphql",
       "emmet_ls",
-      "prismals",
       "pyright",
       "clangd",
-      "bashls",
       "jdtls",
       "gradle_ls",
       "helm_ls",
-      "yamlls",
       "sqls",
+      "gopls"
     },
-
     automatic_installation = true,
+  })
+
+  mason_lspconfig.setup_handlers({
+    function(server_name)
+      require("lspconfig")[server_name].setup {}
+    end,
+
+    -- You can provide dedicated handlers for specific servers here e.g.
+    -- ["rust_analyzer"] = function ()
+    -- require("rust-tools").setup {}
+    -- end
   })
 end
 

@@ -36,7 +36,6 @@ function Plugin.init()
   })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
@@ -109,8 +108,8 @@ end
 -- Set keymaps for LSPs
 local opts = { noremap = true, silent = true, buffer = true }
 function user.on_attach()
-  local bufmap = function(mode, lhs, rhs, opts)
-    vim.keymap.set(mode, lhs, rhs, opts)
+  local bufmap = function(mode, lhs, rhs, o)
+    vim.keymap.set(mode, lhs, rhs, o)
   end
 
   opts.desc = "Show LSP references"

@@ -5,3 +5,4 @@ require("jared.lazy")
 
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[TSUpdate]])

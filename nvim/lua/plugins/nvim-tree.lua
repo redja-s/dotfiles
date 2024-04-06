@@ -3,17 +3,49 @@ local Plugin = { "nvim-tree/nvim-tree.lua" }
 Plugin.version = "*"
 Plugin.lazy = false
 Plugin.dependencies = {
-  "nvim-tree/nvim-web-devicons"
+	"nvim-tree/nvim-web-devicons",
 }
 
 function Plugin.config()
-  require("nvim-tree").setup {}
-end
+	local nvimtree = require("nvim-tree")
 
-function Plugin.init()
-  vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle NvimTree" })
-  vim.keymap.set("n", "<leader>tc", "<cmd>NvimTreeCollapse<cr>", { desc = "Collapse NvimTree recursively" })
-  vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeFindFile<cr>", { desc = "Select current buffer in tree" })
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
+
+	nvimtree.setup({
+		view = {
+			width = 35,
+			relativenumber = true,
+		},
+		renderer = {
+			indent_markers = {
+				enable = true,
+			},
+			icons = {
+				glyphs = {
+					folder = {
+						arrow_closed = "➡",
+						arrow_open = "⬇",
+					},
+				},
+			},
+		},
+		actions = {
+			open_file = {
+				window_picker = {
+					enable = false,
+				},
+			},
+		},
+		git = {
+			ignore = false,
+		},
+	})
+
+	vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open/Close NvimTree" })
+	vim.keymap.set("n", "<leader>tc", "<cmd>NvimTreeCollapse<cr>", { desc = "Collapse NvimTree recursively" })
+	vim.keymap.set("n", "<leader>tr", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
+	vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file explorer on current" })
 end
 
 return Plugin

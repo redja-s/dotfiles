@@ -51,6 +51,16 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- tabs
 -- Remember that buffers != tabs
 map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>l", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>h", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>f", "<cmd>tabnew %<cr>", { desc = "Previous Tab" })
+
+-- Clear highlights
+map("n", "<leader>nh", ":nohl<cr>", { desc = "Clear search highlights" })
+
+-- Window management
+map("n", "<leader>wv", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>wh", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>we", "<C-w>=", { desc = "Make splits equal size" })
+map("n", "<leader>wx", "<cmd>close<cr>", { desc = "Close current split" })

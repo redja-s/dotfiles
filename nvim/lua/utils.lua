@@ -1,10 +1,10 @@
 local utils = {}
 
 utils.signs = {
-  error = "✘",
-  warn = "▲",
-  hint = "⚑",
-  info = "»",
+	error = "✘",
+	warn = "▲",
+	hint = "⚑",
+	info = "»",
 }
 
 return utils

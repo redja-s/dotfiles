@@ -43,30 +43,10 @@ function Plugin.config()
     },
   })
 
-  vim.keymap.set(
-    "n",
-    "<leader>e",
-    "<cmd>NvimTreeToggle<cr>",
-    { desc = "Open/Close NvimTree" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>tc",
-    "<cmd>NvimTreeCollapse<cr>",
-    { desc = "Collapse NvimTree recursively" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>tr",
-    "<cmd>NvimTreeRefresh<cr>",
-    { desc = "Refresh file explorer" }
-  )
-  vim.keymap.set(
-    "n",
-    "<leader>tf",
-    "<cmd>NvimTreeFindFileToggle<cr>",
-    { desc = "Toggle file explorer on current" }
-  )
+  vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Open/Close NvimTree" })
+  vim.keymap.set("n", "<leader>tc", "<cmd>NvimTreeCollapse<cr>", { desc = "Collapse NvimTree recursively" })
+  vim.keymap.set("n", "<leader>tr", "<cmd>NvimTreeRefresh<cr>", { desc = "Refresh file explorer" })
+  vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file explorer on current" })
 end
 
 return Plugin

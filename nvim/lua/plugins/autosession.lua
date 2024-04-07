@@ -7,27 +7,19 @@ function Plugin.config()
     auto_restore_enabled = false,
     auto_session_suppress_dirs = {
       "~",
-      "~/Documents/code/",
       "~/Downloads",
       "~/Documents",
       "~/Desktop",
     },
+    auto_save_enabled = true,
   })
 
   local keymap = vim.keymap
 
-  keymap.set(
-    "n",
-    "<leader>wr",
-    "<cmd>SessionRestore<cr>",
-    { desc = "Restore session" }
-  )
-  keymap.set(
-    "n",
-    "<leader>ws",
-    "<cmd>SessionSave<cr>",
-    { desc = "Save session" }
-  )
+  keymap.set("n", "<leader>wr", "<cmd>SessionRestore<cr>", { desc = "Restore session" })
+  keymap.set("n", "<leader>ws", "<cmd>SessionSave<cr>", { desc = "Save session" })
+  keymap.set("n", "<leader>wd", "<cmd>SessionDelete<cr>", { desc = "Delete session" })
+  keymap.set("n", "<leader>wS", "<cmd>Autosession search<cr>", { desc = "View all sessions" })
 end
 
 return Plugin

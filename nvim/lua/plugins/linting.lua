@@ -23,7 +23,7 @@ function Plugin.config()
     end,
   })
 
-  vim.keymap.set("n", "<leader>l", function()
+  vim.keymap.set("n", "<leader>tl", function()
     lint.try_lint()
   end, { desc = "Trigger linting for current file" })
 end

@@ -1,4 +1,4 @@
-local Plugin = {"christoomey/vim-tmux-navigator"}
+local Plugin = { "christoomey/vim-tmux-navigator" }
 
 Plugin.cmd = {
   "TmuxNavigateLeft",

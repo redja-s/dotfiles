@@ -17,12 +17,13 @@ function Plugin.config()
       json = { "prettier" },
       go = { "gofmt" },
       java = { "google-java-format" },
+      markdown = { "prettier" },
     },
 
     format_on_save = {
       async = false,
       lsp_fallback = true,
-      timeout_ms = 500,
+      timeout_ms = 1000,
     },
 
     formatters = {

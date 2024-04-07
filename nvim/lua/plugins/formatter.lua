@@ -16,6 +16,7 @@ function Plugin.config()
       typescript = { "prettier" },
       json = { "prettier" },
       go = { "gofmt" },
+      java = { "google-java-format" },
     },
 
     format_on_save = {

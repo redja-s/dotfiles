@@ -5,7 +5,7 @@ Plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
   { "antosha417/nvim-lsp-file-operations", config = true },
   { "williamboman/mason-lspconfig.nvim" },
-  { "folke/neodev.nvim", opts = {} },
+  { "folke/neodev.nvim",                   opts = {} },
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
@@ -68,7 +68,6 @@ function Plugin.config()
       "helm_ls",
       "sqls",
       "gopls",
-      "eslint",
     },
     handlers = {
       function(server)
@@ -76,6 +75,7 @@ function Plugin.config()
           capabilities = lsp_capabilities,
         })
       end,
+
       ["tsserver"] = function()
         lspconfig.tsserver.setup({
           capabilities = lsp_capabilities,
@@ -96,16 +96,20 @@ function Plugin.config()
       end,
 
       ["jdtls"] = function() end,
+      ["gradle_ls"] = function()
+        lspconfig.gradle_ls.setup({
+          capabilities = lsp_capabilities,
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        })
+      end
+
     },
     automatic_installation = true,
   })
-
-  -- TODO: Need to integrate utils signs here
-  local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
 end
 
 -- Set keymaps for LSPs
@@ -115,22 +119,22 @@ function user.on_attach()
     vim.keymap.set(mode, lhs, rhs, o)
   end
 
-  opts.desc = "Show LSP references"
+  opts.desc = "Show references"
   bufmap("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
 
-  opts.desc = "Go to declaration"
+  opts.desc = "Show declaration"
   bufmap("n", "gD", vim.lsp.buf.declaration, opts)
 
-  opts.desc = "Show LSP definitions"
+  opts.desc = "Show definitions"
   bufmap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 
-  opts.desc = "Show LSP implementation"
+  opts.desc = "Show implementation"
   bufmap("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 
-  opts.desc = "Show LSP type definition"
+  opts.desc = "Show type definition"
   bufmap("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 
-  opts.desc = "See available code actions"
+  opts.desc = "Show code actions"
   bufmap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
   opts.desc = "Smart rename"
@@ -142,10 +146,10 @@ function user.on_attach()
   opts.desc = "Show line diagnostics"
   bufmap("n", "<leader>d", vim.diagnostic.goto_prev, opts)
 
-  opts.desc = "Go to next diagnostic"
+  opts.desc = "Next diagnostic"
   bufmap("n", "]d", vim.diagnostic.goto_next, opts)
 
-  opts.desc = "Go to previous diagnostic"
+  opts.desc = "Previous diagnostic"
   bufmap("n", "[d", vim.diagnostic.goto_prev, opts)
 
   opts.desc = "Show documentation for what is under cursor"

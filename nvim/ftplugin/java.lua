@@ -8,6 +8,7 @@ local lombok_path = vim.fn.expand("$HOME/.local/share/java/lombok.jar")
 
 -- ## Eclipse configuration setup
 -- 1. Install eclipse.jdt.ls and point to the correct configuration (e.g. mac, windows, linux)
+-- 2. Store the output of the tar file in $HOME/.local/share/java as required in the variables below
 local os_map = {
   linux = "linux",
   mac = "mac",
@@ -46,8 +47,18 @@ local config = {
 
     "-configuration",
     os_config,
+
+    "-data",
+    project_name
   },
   root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
+  settings = {
+    java = {
+      format = {
+        settings = { url = vim.fn.expand("$HOME/.config/nvim/config/java-styleguide.xml") }
+      }
+    }
+  },
   on_attach = lsp_attach,
 }
 require("jdtls").start_or_attach(config)

@@ -6,5 +6,5 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 lspconfig.html.setup({
-	capabilities = lsp_capabilities,
+  capabilities = lsp_capabilities,
 })

@@ -43,9 +43,10 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- We don't map the usual :bd command in favour of mini.bufremove
 -- The plugin allows for switching to another open file buffer rather than going back to nvim tree
+-- The below line would be the usual key mapping without the use of mini.bufremove
 -- map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
 
--- lazy
+-- Use leader + l to open the lazy.nvim window
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy UI" })
 
 -- tabs

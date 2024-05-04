@@ -1,3 +1,5 @@
+-- Use-case:
+-- - Autopairing for automatically completing pairs like () and {}
 local Plugin = { "windwp/nvim-autopairs" }
 
 Plugin.event = "InsertEnter"

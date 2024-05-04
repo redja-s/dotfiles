@@ -39,6 +39,25 @@ function Plugin.init()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
+-- Used in mason-lspconfig ensure_installed
+local default_installs = {
+  "tsserver",
+  "html",
+  "htmx",
+  "jsonls",
+  "cssls",
+  "tailwindcss",
+  "lua_ls",
+  "emmet_ls",
+  "pyright",
+  "clangd",
+  "jdtls",
+  "gradle_ls",
+  "helm_ls",
+  "sqls",
+  "gopls",
+}
+
 function Plugin.config()
   local lspconfig = require("lspconfig")
   local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -52,39 +71,20 @@ function Plugin.config()
   })
 
   require("mason-lspconfig").setup({
-    ensure_installed = {
-      "tsserver",
-      "html",
-      "htmx",
-      "jsonls",
-      "cssls",
-      "tailwindcss",
-      "lua_ls",
-      "emmet_ls",
-      "pyright",
-      "clangd",
-      "jdtls",
-      "gradle_ls",
-      "helm_ls",
-      "sqls",
-      "gopls",
-    },
+    ensure_installed = default_installs,
     handlers = {
+      -- This is the default handler which is used when no dedicated handler exists below
       function(server)
         lspconfig[server].setup({
           capabilities = lsp_capabilities,
         })
       end,
 
+      --Don't do anything for jdtls, this is covered by nvim-jdtls
+      ["jdtls"] = function() end,
+
       ["tsserver"] = function()
-        lspconfig.tsserver.setup({
-          capabilities = lsp_capabilities,
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        })
+        require("plugins.lsp.tsserver")
       end,
 
       ["lua_ls"] = function()
@@ -95,18 +95,9 @@ function Plugin.config()
         require("plugins.lsp.html")
       end,
 
-      ["jdtls"] = function() end,
       ["gradle_ls"] = function()
-        lspconfig.gradle_ls.setup({
-          capabilities = lsp_capabilities,
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        })
+        require("plugins.lsp.gradle_ls")
       end
-
     },
     automatic_installation = true,
   })

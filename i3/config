@@ -116,7 +116,6 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 ############### CUSTOM PROGRAMS 
-exec --no-startup-id redshift -P -O 3000
 exec --no-startup-id feh --bg-center $wallpaper
 
 ############### CUSTOM KEYBINDINGS
@@ -199,6 +198,6 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         status_command i3status
-# }
+bar {
+        status_command i3status
+}

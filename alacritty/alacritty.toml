@@ -8,14 +8,14 @@ lines = 20
 size = 10
 
 [font.normal]
-family = "MonaspaceArgon"
+family = "MonaspiceArNerdFontMono"
 style = "Medium"
 
 [font.bold]
-family = "MonaspaceArgon"
+family = "MonaspiceArNerdFontMono"
 style = "Bold" 
 
 [font.italic]
-family = "MonaspaceArgon"
+family = "MonaspiceArNerdFontMono"
 style = "Italic"
 

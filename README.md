@@ -7,5 +7,5 @@
 
 ### Dependencies
 For Java development, install:
-    - 
+    - eclipse-jdtls
 

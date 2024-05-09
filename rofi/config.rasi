@@ -1,7 +1,8 @@
 configuration {
   modi: "window,drun,ssh,combi";
-  font: "MonaspaceArgon 19";
-  combi-modi: "window,drun,ssh";
+  font: "MonaspiceArNerdFontMono 19";
+  combi-modi: "window,drun";
 }
-@theme "solarized"
+//@theme "solarized"
 
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"

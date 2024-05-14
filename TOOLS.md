@@ -6,7 +6,6 @@
 - Rofi [App Launcher]
 - Blue light filter [Redshift]
 
-
 # Dev
 
 - jenv [Managing Java versions]

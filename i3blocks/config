@@ -43,6 +43,16 @@ interval=30
 label=CPU
 interval=10
 
+# [gpu_usage]
+# command=/home/jared/.config/i3blocks/gpu_checker
+# label=GPU
+# interval=10
+#min_width=GPU 100% 100% 100% 100%
+# GPU_BRAND=NVIDIA
+#T_WARN=70
+#T_CRIT=90
+
+
 [docker]
 label=
 command=/home/jared/.config/i3blocks/docker_check.sh

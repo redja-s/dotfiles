@@ -3,6 +3,4 @@ configuration {
   font: "MonaspiceArNerdFontMono 19";
   combi-modi: "window,drun";
 }
-//@theme "solarized"
-
-@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+@theme "/usr/share/rofi/themes/android_notification.rasi"

@@ -19,9 +19,9 @@ function Plugin.config()
     },
     renderer = {
       group_empty = true,
-      indent_markers = {
-        enable = true,
-      },
+      -- indent_markers = {
+      --   enable = true,
+      -- },
       icons = {
         glyphs = {
           folder = {

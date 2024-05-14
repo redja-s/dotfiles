@@ -21,7 +21,7 @@ local os_config = vim.fn.expand("$HOME/.local/share/java/config_") .. current_os
 -- 1. After installing and expanding the eclipse tar file, move the `plugins/` folder in $HOME/.local/share/java
 local equinox_launcher = vim.fn.glob("$HOME/.local/share/java/plugins/org.eclipse.equinox.launcher_*.jar")
 
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+-- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local config = {
   cmd = {
@@ -33,7 +33,7 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
-    "-Xmx1g",
+    "-Xmx4g",
     "--add-modules=ALL-SYSTEM",
 
     "--add-opens",
@@ -49,16 +49,30 @@ local config = {
     os_config,
 
     "-data",
-    project_name
+    -- project_name
   },
   root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
   settings = {
     java = {
       format = {
         settings = { url = vim.fn.expand("$HOME/.config/nvim/config/java-styleguide.xml") }
-      }
+      },
+      saveActions = {
+        organizeImports = true,
+      },
+      sources = {
+        organizeImports = {
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
+        }
+      },
     }
   },
   on_attach = lsp_attach,
 }
 require("jdtls").start_or_attach(config)
+
+-- Set shiftwidth and tabstop. This has higher priority than the formatting xml
+vim.opt_local.expandtab = false
+vim.opt_local.tabstop = 4
+vim.opt_local.shiftwidth = 4

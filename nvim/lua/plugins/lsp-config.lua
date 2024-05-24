@@ -80,7 +80,8 @@ function Plugin.config()
         })
       end,
 
-      --Don't do anything for jdtls, this is covered by nvim-jdtls
+      -- Don't do anything for jdtls, this is covered by nvim-jdtls
+      -- Find the config for Java under nvim/ftpluin/java.lua
       ["jdtls"] = function() end,
 
       ["tsserver"] = function()

@@ -57,9 +57,6 @@ local config = {
       format = {
         settings = { url = vim.fn.expand("$HOME/.config/nvim/config/java-styleguide.xml") }
       },
-      saveActions = {
-        organizeImports = true,
-      },
       sources = {
         organizeImports = {
           starThreshold = 9999,
@@ -73,6 +70,7 @@ local config = {
 require("jdtls").start_or_attach(config)
 
 -- Set shiftwidth and tabstop. This has higher priority than the formatting xml
+-- See nvim-jdtls docs on GitHub for reference
 vim.opt_local.expandtab = false
 vim.opt_local.tabstop = 4
 vim.opt_local.shiftwidth = 4

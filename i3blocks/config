@@ -69,10 +69,13 @@ interval=5
 [volume-pipewire]
 interval=1
 
-[time]
-command=date "+%A %d %B | %T %Z"
+[time_date]
+command=date "+%A %d %B"
+interval=3600
+
+[time_clock]
+command=date "+%T %Z"
 interval=1
-color=#dfbf9f
 
 [shutdown_menu]
 full_text=

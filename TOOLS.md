@@ -12,7 +12,7 @@
 
 # Nerd Fonts
 
-Nerd Fonts allow unicode icons to be used. Use the following website https://www.nerdfonts.com/#home
+Nerd Fonts allow unicode icons to be displayed. Use the following website https://www.nerdfonts.com/#home
 
 Example:
 1. Download "Monaspice Nerd Font"

@@ -7,15 +7,16 @@ Plugin.dependencies = {
 Plugin.cmd = { "TroubleToggle", "Trouble" }
 Plugin.opts = { use_diagnostic_signs = true }
 Plugin.keys = {
-  { "<leader>xx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
-  { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-  { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
-  { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+  { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",         desc = "Diagnostics (Trouble)" },
+  { "<leader>xX", "<cmd>Trouble toggle filter.buf=0<cr>",        desc = "Buffer Diagnostics (Trouble)" },
+  { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+  { "<leader>xl", "<cmd>Trouble loclist toggle<cr>",             desc = "Location List (Trouble)" },
+  { "<leader>xq", "<cmd>Trouble qflist toggle<cr>",              desc = "Quickfix List (Trouble)" },
   {
     "<C-[>",
     function()
       if require("trouble").is_open() then
-        require("trouble").previous({ skip_groups = true, jump = true })
+        require("trouble").prev({ skip_groups = true, jump = true })
       else
         local ok, err = pcall(vim.cmd.cprev)
         if not ok then

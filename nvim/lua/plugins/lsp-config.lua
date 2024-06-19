@@ -1,11 +1,11 @@
 local Plugin = { "neovim/nvim-lspconfig" }
-local user = {}
 
 Plugin.dependencies = {
   "hrsh7th/cmp-nvim-lsp",
   { "antosha417/nvim-lsp-file-operations", config = true },
+  "williamboman/mason.nvim",
   { "williamboman/mason-lspconfig.nvim" },
-  { "folke/neodev.nvim",                   opts = {} },
+  { "folke/neodev.nvim", opts = {} },
 }
 
 Plugin.cmd = { "LspInfo", "LspInstall", "LspUnInstall" }
@@ -62,14 +62,6 @@ function Plugin.config()
   local lspconfig = require("lspconfig")
   local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-  local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
-
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = group,
-    desc = "LSP Actions",
-    callback = user.on_attach,
-  })
-
   require("mason-lspconfig").setup({
     ensure_installed = default_installs,
     handlers = {
@@ -98,57 +90,50 @@ function Plugin.config()
 
       ["gradle_ls"] = function()
         require("plugins.lsp.gradle_ls")
-      end
+      end,
     },
     automatic_installation = true,
   })
-end
 
--- Set keymaps for LSPs
-local opts = { noremap = true, silent = true, buffer = true }
-function user.on_attach()
-  local bufmap = function(mode, lhs, rhs, o)
-    vim.keymap.set(mode, lhs, rhs, o)
-  end
+  local options = { noremap = true, silent = true, buffer = true }
+  options.desc = "Show references"
+  vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<cr>", options)
 
-  opts.desc = "Show references"
-  bufmap("n", "gR", "<cmd>Telescope lsp_references<cr>", opts)
+  options.desc = "Show declaration"
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, options)
 
-  opts.desc = "Show declaration"
-  bufmap("n", "gD", vim.lsp.buf.declaration, opts)
+  options.desc = "Show definitions"
+  vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", options)
 
-  opts.desc = "Show definitions"
-  bufmap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
+  options.desc = "Show implementation"
+  vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", options)
 
-  opts.desc = "Show implementation"
-  bufmap("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+  options.desc = "Show type definition"
+  vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", options)
 
-  opts.desc = "Show type definition"
-  bufmap("n", "gt", "<cmd>Telescope lsp_type_definitions<cr>", opts)
+  options.desc = "Show code actions"
+  vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, options)
 
-  opts.desc = "Show code actions"
-  bufmap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+  options.desc = "Smart rename"
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, options)
 
-  opts.desc = "Smart rename"
-  bufmap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+  options.desc = "Show buffer diagnostics"
+  vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>", options)
 
-  opts.desc = "Show buffer diagnostics"
-  bufmap("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<cr>, opts")
+  options.desc = "Show line diagnostics"
+  vim.keymap.set("n", "<leader>d", vim.diagnostic.goto_prev, options)
 
-  opts.desc = "Show line diagnostics"
-  bufmap("n", "<leader>d", vim.diagnostic.goto_prev, opts)
+  options.desc = "Next diagnostic"
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, options)
 
-  opts.desc = "Next diagnostic"
-  bufmap("n", "]d", vim.diagnostic.goto_next, opts)
+  options.desc = "Previous diagnostic"
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, options)
 
-  opts.desc = "Previous diagnostic"
-  bufmap("n", "[d", vim.diagnostic.goto_prev, opts)
+  options.desc = "Show documentation for what is under cursor"
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, options)
 
-  opts.desc = "Show documentation for what is under cursor"
-  bufmap("n", "K", vim.lsp.buf.hover, opts)
-
-  opts.desc = "Restart LSP"
-  bufmap("n", "<leader>rs", ":LspRestart<cr>", opts)
+  options.desc = "Restart LSP"
+  vim.keymap.set("n", "<leader>rs", "<cmd>LspRestart<cr>", options)
 end
 
 return Plugin

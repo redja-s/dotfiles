@@ -7,11 +7,15 @@ Plugin.dependencies = {
 Plugin.cmd = { "Trouble" }
 Plugin.opts = { use_diagnostic_signs = true }
 Plugin.keys = {
-  { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>",         desc = "Diagnostics (Trouble)" },
-  { "<leader>xx", "<cmd>Trouble toggle filter.buf=0<cr>",        desc = "Buffer Diagnostics (Trouble)" },
+  { "<leader>xX", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+  {
+    "<leader>xx",
+    "<cmd>Trouble diagnostics toggle focus=false filter.buf=0<cr>",
+    desc = "Buffer Diagnostics (Trouble)",
+  },
   { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
-  { "<leader>xl", "<cmd>Trouble loclist toggle<cr>",             desc = "Location List (Trouble)" },
-  { "<leader>xq", "<cmd>Trouble qflist toggle<cr>",              desc = "Quickfix List (Trouble)" },
+  { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
+  { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
   {
     "<C-[>",
     function()

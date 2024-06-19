@@ -12,14 +12,14 @@ lines = 20
 size = 10
 
 [font.normal]
-family = "MonaspiceArNerdFontMono"
+family = "MonaspiceAr NF"
 style = "Medium"
 
 [font.bold]
-family = "MonaspiceArNerdFontMono"
+family = "MonaspiceAr NF"
 style = "Bold" 
 
 [font.italic]
-family = "MonaspiceArNerdFontMono"
+family = "MonaspiceAr NF"
 style = "Italic"
 

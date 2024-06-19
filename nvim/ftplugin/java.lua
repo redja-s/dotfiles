@@ -12,9 +12,11 @@ local lombok_path = vim.fn.expand("$HOME/.local/share/java/lombok.jar")
 local os_map = {
   linux = "linux",
   mac = "mac",
+  mac_arm = "mac_arm",
   win = "win",
 }
-local current_os = os_map.linux
+
+local current_os = os_map.mac_arm
 local os_config = vim.fn.expand("$HOME/.local/share/java/config_") .. current_os
 
 -- ## Equinox launcher

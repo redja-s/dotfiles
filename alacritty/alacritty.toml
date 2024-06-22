@@ -9,7 +9,7 @@ columns = 80
 lines = 20
 
 [font]
-size = 10
+size = 16
 
 [font.normal]
 family = "MonaspiceAr NF"

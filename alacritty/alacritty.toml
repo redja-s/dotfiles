@@ -9,11 +9,11 @@ columns = 80
 lines = 20
 
 [font]
-size = 16
+size = 14
 
 [font.normal]
 family = "MonaspiceAr NF"
-style = "Medium"
+style = "Regular"
 
 [font.bold]
 family = "MonaspiceAr NF"

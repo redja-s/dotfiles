@@ -1,7 +1,6 @@
 format = """$time\
 $directory\
 $git_branch\
-$git_status\
 $git_state\
 \n\
 $character\
@@ -17,10 +16,6 @@ style = 'cyan'
 format = '[\[$symbol$branch(:$remote_branch)\]]($style)'
 symbol = ''
 style = 'purple'
-
-[git_status]
-format = '[\[$all_status\]]($style)'
-style = 'red'
 
 [cmd_duration]
 format = "[$duration]($style)"

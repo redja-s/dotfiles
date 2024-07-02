@@ -23,7 +23,8 @@ local os_config = vim.fn.expand("$HOME/.local/share/java/config_") .. current_os
 -- 1. After installing and expanding the eclipse tar file, move the `plugins/` folder in $HOME/.local/share/java
 local equinox_launcher = vim.fn.glob("$HOME/.local/share/java/plugins/org.eclipse.equinox.launcher_*.jar")
 
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+-- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local project_name = ".workspace"
 
 local config = {
   cmd = {

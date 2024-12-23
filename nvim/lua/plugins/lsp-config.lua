@@ -41,7 +41,6 @@ end
 
 -- Used in mason-lspconfig ensure_installed
 local default_installs = {
-  "tsserver",
   "html",
   "htmx",
   "jsonls",
@@ -75,10 +74,6 @@ function Plugin.config()
       -- Don't do anything for jdtls, this is covered by nvim-jdtls
       -- Find the config for Java under nvim/ftpluin/java.lua
       ["jdtls"] = function() end,
-
-      ["tsserver"] = function()
-        require("plugins.lsp.tsserver")
-      end,
 
       ["lua_ls"] = function()
         require("plugins.lsp.lua_ls")

@@ -84,12 +84,7 @@ function Plugin.config()
         gitsigns.blame_line({ full = true })
       end, "Blame line")
 
-      map(
-        "n",
-        "<leader>tb",
-        gitsigns.toggle_current_line_blame,
-        "Toggle Blame line"
-      )
+      map("n", "<leader>tb", gitsigns.toggle_current_line_blame, "Toggle Blame line")
       map("n", "tb", gitsigns.toggle_current_line_blame, "Toggle Blame line")
 
       map("n", "<leader>hd", gitsigns.diffthis, "Diff This")
@@ -101,12 +96,7 @@ function Plugin.config()
       map("n", "td", gitsigns.toggle_deleted, "Toggle Deleted")
 
       -- Text object
-      map(
-        { "o", "x" },
-        "ih",
-        ":<C-U>Gitsigns select_hunk<CR>",
-        "GitSigns - Select Hunk"
-      )
+      map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns - Select Hunk")
     end,
   })
 end

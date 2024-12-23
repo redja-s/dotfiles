@@ -27,8 +27,7 @@ Plugin.opts = {
     always_show_bufferline = false,
     diagnostics_indicator = function(_, _, diag)
       local utils = require("../utils").signs
-      local ret = (diag.error and utils.error .. diag.error .. " " or "")
-        .. (diag.warning and utils.warn .. diag.warning or "")
+      local ret = (diag.error and utils.error .. diag.error .. " " or "") .. (diag.warning and utils.warn .. diag.warning or "")
       return vim.trim(ret)
     end,
     mode = "buffers",

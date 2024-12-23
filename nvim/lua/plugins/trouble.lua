@@ -2,6 +2,7 @@ local Plugin = { "folke/trouble.nvim" }
 
 Plugin.dependencies = {
   "nvim-tree/nvim-web-devicons",
+  "folke/which-key.nvim",
 }
 
 Plugin.cmd = { "Trouble" }
@@ -41,5 +42,12 @@ Plugin.keys = {
     desc = "Next trouble/quickfix item",
   },
 }
+
+function Plugin.init()
+  local wk = require("which-key")
+  wk.add({
+    { "<leader>x", group = "Trouble" },
+  })
+end
 
 return Plugin

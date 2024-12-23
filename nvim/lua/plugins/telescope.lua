@@ -10,6 +10,7 @@ Plugin.dependencies = {
     "BurntSushi/ripgrep",
   },
   "nvim-telescope/telescope-live-grep-args.nvim",
+  "folke/which-key.nvim",
 }
 
 function Plugin.config()
@@ -31,17 +32,17 @@ function Plugin.config()
   telescope.load_extension("fzf")
 
   local keymap = vim.keymap.set
+  local wk = require("which-key")
   local builtin = require("telescope.builtin")
 
   keymap("n", "ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
   keymap("n", "fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find recent files" })
+
+  wk.add({
+    { "<leader>f", group = "Telescope" },
+  })
   keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor" })
-  keymap(
-    "n",
-    "<leader>fg",
-    "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
-    { desc = "Live grep" }
-  )
+  keymap("n", "<leader>/", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", { desc = "Live grep" })
   keymap("n", "gr", builtin.lsp_references, { desc = "References for currently selected word" })
   keymap("n", "fd", builtin.lsp_definitions, { desc = "Go to definition" })
   -- Setup which-key integration when pressing leader

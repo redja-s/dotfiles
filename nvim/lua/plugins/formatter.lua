@@ -16,7 +16,8 @@ function Plugin.config()
       typescript = { "prettier" },
       json = { "prettier" },
       go = { "gofmt" },
-      java = { "google-java-format" },
+      -- Comment as this conflicts with settings from ftplugin/java.lua
+      -- java = { "google-java-format" },
       markdown = { "prettier" },
     },
 
